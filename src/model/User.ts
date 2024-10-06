@@ -20,9 +20,9 @@ const MessageSchema: Schema<Message> = new Schema({
 export interface User extends Document {
     username: string;
     email: string;
-    password: string;
-    verifyCode: string;
-    verifyCodeExpiry: Date;
+    password?: string;
+    verifyCode?: string;
+    verifyCodeExpiry?: Date;
     isVerified: boolean;
     isAcceptingMessages: boolean; // Consistent naming
     messages: Message[];
@@ -43,15 +43,18 @@ const UserSchema: Schema<User> = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Password is required"]
+        required :false,
+        // required: [true, "Password is required"]
     },
     verifyCode: {
         type: String,
-        required: [true, "Verify code is required"]
+        required:false
+        // required: [true, "Verify code is required"]
     },
     verifyCodeExpiry: {
         type: Date,
-        required: [true, "Verify code expiry is required"]
+        required :false 
+        // required: [true, "Verify code expiry is required"]
     },
     isVerified: {
         type: Boolean,

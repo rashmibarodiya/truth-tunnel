@@ -63,25 +63,29 @@ const Page = () => {
             
         } catch (error) {
             const axiosError = error as AxiosError<ApiResponse>;
-            toast.error("Error", { description: "Failed to fetch message settings" || axiosError.response?.data.message })
+            toast.error("Error", { description: axiosError.response?.data.message || "Failed to fetch message settings" })
+
         } finally {
             setIsSwitchLoading(false)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps         
     }, [setValue, toast, watch])
 
     const fetchMessages = useCallback(async (refresh: boolean = false) => {
         setLoading(true)
         setIsSwitchLoading(false)
         try {
+          
             const response = await axios.get<ApiResponse>(`/api/get-messages`)
+            
             setMessages(response.data.messages || [])
             if (refresh) {
                 toast.success("Refreshed Messages", { description: "Showing latest messages" })
             }
         } catch (error) {
             const axiosError = error as AxiosError<ApiResponse>;
-            toast.error("Error", { description: "Failed to fetch message settings" || axiosError.response?.data.message })
+            toast.error("Error", { description: axiosError.response?.data.message || "Failed to fetch message settings" })
+
         } finally {
             setIsSwitchLoading(false)
             setLoading(false)

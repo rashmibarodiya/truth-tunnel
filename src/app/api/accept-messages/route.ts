@@ -66,10 +66,12 @@ export async function GET(request: Request) {
     }
 
     const userId = user._id;
+    console.log(`############################# `,session?.user)
     try {
         const foundUser = await UserModel.findById(userId)
 
         if (!foundUser) {
+            console.log(`User not found in accept message list`)
             return Response.json({
                 success: false,
                 message: "User not found"

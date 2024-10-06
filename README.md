@@ -50,6 +50,10 @@ npm install
 MONGODB_URI=""
 NEXTAUTH_SECRET=""
 EMAIL_PASS=""
+EMAIL= #Email address from which you want to send the email
+
+GOOGLE_CLIENT_ID= #Your Google client ID
+GOOGLE_CLIENT_SECRET= #your Google client secret
   ```
 4. Build the application:
    
